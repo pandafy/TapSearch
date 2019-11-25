@@ -1,4 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+
 
 from rest_framework import generics
 from rest_framework.response import Response
@@ -26,7 +30,8 @@ class ListsDocumentView(generics.ListAPIView):
             temp.append(Document.objects.create(text=doc))
         commence_indexing(temp)
         return Response(
-            status=status.HTTP_201_CREATED
+            status=status.HTTP_201_CREATED,
+            data = {'action' : 'Success'}
         )
 
 class SearchDocumentView(generics.ListAPIView):
@@ -35,21 +40,26 @@ class SearchDocumentView(generics.ListAPIView):
     """
     queryset = Words.objects.all()
     serializer_class = WordSerializer
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(SearchDocumentView, self).dispatch(request, *args, **kwargs)
 
+    @method_decorator(csrf_exempt)
     def post(self, request, *args, **kwargs):
         input_text = request.data['word'].lower()
-        # try: 
-        word_obj = Words.objects.get(word = input_text)
-        wf_qs = WordFrequencies.objects.filter(word_id = word_obj).select_related('doc_id').values_list('doc_id')[:10]
-        doc_qs = Document.objects.filter(id__in=wf_qs)
+        try: 
+            word_obj = Words.objects.get(word = input_text)
+            wf_qs = WordFrequencies.objects.filter(word_id = word_obj).select_related('doc_id').values_list('doc_id')[:10]
+            doc_qs = Document.objects.filter(id__in=wf_qs)
+            
+            data = DocumentSerializer(doc_qs,many=True).data
+            mystatus = status.HTTP_200_OK
         
-        data = DocumentSerializer(doc_qs,many=True).data
-        mystatus = status.HTTP_200_OK
-        
-        # except Exception as e:
-        #     print(e)
-        #     data = {'detail' : 'Not Found 404'}
-        #     mystatus = status.HTTP_204_NO_CONTENT
+        except Exception as e:
+            data = {'detail' : 'Not Found 404'}
+            mystatus = status.HTTP_204_NO_CONTENT
+            return HttpResponse(status=mystatus,content=data)
+
         return Response(
             status= mystatus, 
             data = data
@@ -65,6 +75,7 @@ def clear(request):
         status = status.HTTP_200_OK,
         data = { "action" : "Cleared all indexes."}
     )
+    
 def commence_indexing(my_list):
     """
     Uses helper functions to clean text and  indexes words.

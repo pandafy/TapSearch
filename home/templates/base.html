@@ -1,23 +1,186 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TapSearch</title>
+
+    <!-- CSS imports-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+        integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+
     {% block pageSpecificCss %}
     {% endblock pageSpecificCss %}
-    <title>TapSearch</title>
+
+
 </head>
+
 <body>
-    {% block body %}
-    
     <!-- Main body of page-->
 
+
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">TapSearch</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{% url 'home-add' %}">Add</a></li>
+                <li><a href="{% url 'home-home' %}">Search</a></li>
+                <li><a href="{% url 'home-clear' %}">Clear</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="#">Add</a></li>
+                <li><a href="#">Search</a></li>
+                <li><a href="#">Clear</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    {% block body %}
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            
+            <h1 class="header center orange-text">TapSearch</h1>
+
+            <div class="row center">
+                <div class="input-field offset-l2 col s12 m4 l8 center">
+                    <input placeholder="Start searching now" id="search-input" type="text" class="validate">
+                </div>
+            </div>
+            <div class="row center">
+                <a id="tap" class="btn-large waves-effect waves-light orange">Tap</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container">
+        <div class="section">
+            <div class="row" id="search-results">
+                
+            </div>
+            
+        </div>
+    </div>
     {% endblock body %}
+    {% csrf_token %}
+    <div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal" style="width:130px; height: 120px;top:40%;">
+            <div class="modal-content">
+                <div class="center">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l5 s12">
+                    <h5 class="white-text">TapSearch</h5>
+                    <p class="grey-text text-lighten-4">Indexing documents for you.</p>
+                </div>
+                <div class="col l4 s12">
+                    <h5 class="white-text">API Functions</h5>
+                    <ul class="indented-list">
+                        <li><a class="white-text" href="{% url 'home-add' %}">Add Documents</a></li>
+                        <li><a class="white-text" href="{% url 'home-home' %}">Search Document</a></li>
+                        <li><a class="white-text" href="#!">Clear Indexing</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul class="indented-list">
+                        <li><a class="white-text" href="https://github.com/TheOneAboveAllTitan"><i
+                                    class="fab fa-github"></i> Github</a></li>
+                        <li><a class="white-text" href="https://twitter.com/_p_4Nd4_"><i class="fab fa-twitter"></i>
+                                Twitter</a></li>
+                        <li><a class="white-text" href="https://www.linkedin.com/in/gd3000/"><i
+                                    class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a class="white-text" href="mailto:gaganwrk0@gmail.com"><i class="fas fa-at"></i>
+                                gaganwrk0@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made using <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+        </div>
+    </footer>
+
+
 
     <!-- JavaScript imports-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!---->
 
     {% block pageSpecificJS %}
+    <script src="{% static 'js/modal.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
+
+
     {% endblock pageSpecificJS %}
 </body>
+
 </html>

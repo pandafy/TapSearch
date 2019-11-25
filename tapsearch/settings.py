@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7r3zb+j7mz2t(wjb$_kwfna)q1u4&rcefx7=)w7j*dfa^-urj1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tapsearch.urls'
@@ -78,15 +79,27 @@ WSGI_APPLICATION = 'tapsearch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tapsearch',
-        'USER' : 'demo',
-        'PASSWORD' : 'demo',
-        'HOST' : 'localhost'
+if DEBUG == True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'tapsearch',
+            'USER' : 'demo',
+            'PASSWORD' : 'demo',
+            'HOST' : 'localhost'
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd7iemsj6t1vrne',
+            'USER' : 'osuadpwcrkljow',
+            'PASSWORD' : '4d5c4a9fff726fb4cc4a32df52f69248bca0c5ec58fa965dcaa1e21f718e8916',
+            'HOST' : 'ec2-23-21-70-39.compute-1.amazonaws.com',
+            'PORT' : '5432'
+        }
+    }
 
 
 # Password validation
@@ -126,3 +139,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+

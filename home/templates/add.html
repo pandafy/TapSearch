@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pageSpecificCss %}
+{% endblock pageSpecificCss %}
+
+{% block body %}
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <h1 class="header center orange-text">TapSearch</h1>
+        <div class="row center">
+            <div class="input-field col s12">
+                <textarea id="add-textarea" class="materialize-textarea"></textarea>
+                <label for="textarea1">Add text to index.   </label>
+            </div>
+            <a id="add" class="btn-large waves-effect waves-light orange">Index it! </a>
+        </div>
+    </br><br>
+    </div>
+</div>
+{% endblock body%}
+
+{% block pageSpecificJS%}
+<script src="{% static 'js/modal.js' %}"></script>
+<script src="{% static 'js/add.js' %}"></script>
+{% endblock pageSpecificJS%}
+   
