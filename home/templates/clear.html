@@ -4,7 +4,29 @@
 {% block body %}
 
 <div class="section no-pad-bot" id="index-banner">
-    <div class="container" style="height:70%">
+    <div class="container">
+        <h1 class="header center orange-text">TapClear</h1>
+        <div class="row center">
+            <p>
+                Caution! Tapping below button will clear all indexes and documents of TapSearch. Let's make indexes great again.
+            </p>
+            <a id="clear" class="btn-large waves-effect waves-light orange">Clear it! </a>
+        </div>
+        </br><br><br><br>
+    </div>
+</div>
+
+<div id="clear-ack-modal" class="modal modal-width" style="width:fit-content !important;">
+    <div class="modal-content">
+        <p>All content has been successfully removed.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="{% url 'home-clear' %}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>
 {% endblock body %}
+
+{% block pageSpecificJS%}
+<script src="{% static 'js/modal.js' %}"></script>
+<script src="{% static 'js/clear.js' %}"></script>
+{% endblock pageSpecificJS%}
