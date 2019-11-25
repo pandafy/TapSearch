@@ -2,26 +2,36 @@
 {% load static %}
 
 {% block pageSpecificCss %}
+        <link rel="stylesheet" href="{% static 'css/add.css' %}">
 {% endblock pageSpecificCss %}
 
 {% block body %}
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-        <h1 class="header center orange-text">TapSearch</h1>
+        <h1 class="header center orange-text">TapAdd</h1>
         <div class="row center">
             <div class="input-field col s12">
                 <textarea id="add-textarea" class="materialize-textarea"></textarea>
-                <label for="textarea1">Add text to index.   </label>
+                <label for="textarea1">Add text to index. </label>
             </div>
             <a id="add" class="btn-large waves-effect waves-light orange">Index it! </a>
         </div>
-    </br><br>
+        </br><br>
     </div>
 </div>
+
+<div id="add-ack-modal" class="modal modal-width" style="width:fit-content !important;">
+    <div class="modal-content">
+        <p>Content has been successfully added.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="{% url 'home-add' %}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
 {% endblock body%}
 
 {% block pageSpecificJS%}
 <script src="{% static 'js/modal.js' %}"></script>
 <script src="{% static 'js/add.js' %}"></script>
 {% endblock pageSpecificJS%}
-   
