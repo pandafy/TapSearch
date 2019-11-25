@@ -5,6 +5,26 @@ from django.db import models
 class Document(models.Model):
     text = models.TextField(null=False)
 
-class words(models.Model):
+    def __str__(self):
+        return self.text
+    
+
+class Words(models.Model):
     word = models.TextField(null=False)
-    doc_id = models.ManyToManyField(Document,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.word
+
+class WordFrequencies(models.Model):
+    word_id = models.ForeignKey(Words,on_delete=models.CASCADE)
+    doc_id = models.ForeignKey(Document,on_delete=models.CASCADE)
+    frequency = models.IntegerField()
+
+    class Meta:
+        ordering = ['frequency']
+
+    
+    def __str__(self):
+        return self.word_id.word + " " + str(self.frequency)
+    
+    
