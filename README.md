@@ -9,7 +9,23 @@ TapSearch is currently hosted on Heroku - [TapSearch](https://secret-sea-43815.h
  - NLTK
  - PostgreSQL
 
-### Setting up development environment
+## API Documentation
+
+- Add 
+	- Endpoint : [https://secret-sea-43815.herokuapp.com/api/](https://secret-sea-43815.herokuapp.com/api/)
+	- GET : Returns all indexed documents
+	- POST : Add new text for indexing
+		- Request Format: `{"text": "Text to be indexed"}`
+- Search
+	- Endpoint : [https://secret-sea-43815.herokuapp.com/api/search](https://secret-sea-43815.herokuapp.com/api/search)
+	- GET : Returns distinct indexed words
+	- POST : Returns top 10 documents containing that word
+		- Request Format : `{ "word" :  "seachedWord" }`
+- Clear
+	- Endpoint : [https://secret-sea-43815.herokuapp.com/api/clear](https://secret-sea-43815.herokuapp.com/api/clear)
+	- GET : Clears all indexing and returns a confirmation message for clearing.
+
+## Setting up development environment
 Clone project repository
 
     $ git clone https://github.com/TheOneAboveAllTitan/TapSearch.git
@@ -56,20 +72,6 @@ Run the application server
 
 Visit [127.0.0.1:8000](127.0.0.1:8000) on your browser to view TapSearch.
 
-## API Documentation
 
-- Add 
-	- Endpoint : [https://secret-sea-43815.herokuapp.com/api/](https://secret-sea-43815.herokuapp.com/api/)
-	- GET : Returns all indexed documents
-	- POST : Add new text for indexing
-		- Request Format: `{"text": "Text to be indexed"}`
-- Search
-	- Endpoint : [https://secret-sea-43815.herokuapp.com/api/search](https://secret-sea-43815.herokuapp.com/api/search)
-	- GET : Returns distinct indexed words
-	- POST : Returns top 10 documents containing that word
-		- Request Format : `{ "word" :  "seachedWord" }`
-- Clear
-	- Endpoint : [https://secret-sea-43815.herokuapp.com/api/clear](https://secret-sea-43815.herokuapp.com/api/clear)
-	- GET : Clears all indexing and returns a confirmation message for clearing.
 
 
