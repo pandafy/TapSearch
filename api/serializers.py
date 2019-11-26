@@ -6,7 +6,7 @@ class DocumentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Document
-        fields = ("id","text")
+        fields = ("id", "text")
 
 
 class WordSerializer(serializers.ModelSerializer):
@@ -14,8 +14,9 @@ class WordSerializer(serializers.ModelSerializer):
         model = Words
         fields = ("word",)
 
+
 class WordFrequenciesSerializer(serializers.ModelSerializer):
-     
+
     class Meta:
         model = WordFrequencies
-        fields = ("id","frequency","doc_id",)
+        fields = ("id", "frequency", "doc_id",)
