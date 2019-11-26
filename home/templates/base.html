@@ -27,19 +27,12 @@
 
 
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">TapSearch</a>
+        <div class="nav-wrapper container"><a id="logo-container" class="brand-logo">TapSearch</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{% url 'home-add' %}">Add</a></li>
                 <li><a href="{% url 'home-home' %}">Search</a></li>
                 <li><a href="{% url 'home-clear' %}">Clear</a></li>
             </ul>
-
-            <ul id="nav-mobile" class="sidenav">
-                <li><a href="#">Add</a></li>
-                <li><a href="#">Search</a></li>
-                <li><a href="#">Clear</a></li>
-            </ul>
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
     </nav>
     {% block body %}
@@ -142,7 +135,7 @@
                     <ul class="indented-list">
                         <li><a class="white-text" href="{% url 'home-add' %}">Add Documents</a></li>
                         <li><a class="white-text" href="{% url 'home-home' %}">Search Document</a></li>
-                        <li><a class="white-text" href="#!">Clear Indexing</a></li>
+                        <li><a class="white-text" href="{% url 'home-clear' %}">Clear Indexing</a></li>
                     </ul>
                 </div>
                 <div class="col l3 s12">

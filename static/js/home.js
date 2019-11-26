@@ -13,8 +13,9 @@ $.ajaxSetup({
             success: function(response){
                 console.log(response)
                 myModal.close()
-                if(response['detail']){
-                    html += `<div class="col s12 l12">
+                html = ''
+                if(response === undefined){
+                    html = `<div class="col s12 l12">
                                     <div class="card-panel red lighten-1">
                                         <span class="black-text">
                                             No results found.
@@ -23,7 +24,6 @@ $.ajaxSetup({
                                 </div>`
                 }
                 else{
-                    html = ''
                     for(let i=0; i<response.length;++i){
                         html += `<div class="col s12 l12">
                                     <div class="card-panel teal lighten-5">

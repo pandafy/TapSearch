@@ -55,10 +55,9 @@ class SearchDocumentView(generics.ListAPIView):
             data = DocumentSerializer(doc_qs,many=True).data
             mystatus = status.HTTP_200_OK
         
-        except Exception as e:
-            data = {'detail' : 'Not Found 404'}
+        except:
+            data = "{'detail' : 'Not Found 404'}"
             mystatus = status.HTTP_204_NO_CONTENT
-            return HttpResponse(status=mystatus,content=data)
 
         return Response(
             status= mystatus, 
