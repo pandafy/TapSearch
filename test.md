@@ -14,8 +14,8 @@ There are many variations of passages of Lorem Ipsum available, but the majority
 
 ### Test 1 : Search 'lorem'
 
-![Ouput for searching 'lorem' ](https://imgur.com/XUPz2Xt)
+![Ouput for searching 'lorem' ](https://i.imgur.com/XUPz2Xt.png)
 
 ### Test 2 : Search 'flu'
 
-![Output for searching 'flu'](https://imgur.com/XRmilRF)
+![Output for searching 'flu'](https://i.imgur.com/XRmilRF.png)
