@@ -1,4 +1,4 @@
-Django==2.2.25
+Django==2.2.27
 django-admin==2.0.0
 django-excel-response2==2.0.8
 django-six==1.0.4
